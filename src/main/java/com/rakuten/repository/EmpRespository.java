@@ -1,14 +1,20 @@
 package com.rakuten.repository;
 
+
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import com.rakuten.entity.Customer;
 public class EmpRespository {
 	static EntityManagerFactory emf=Persistence.createEntityManagerFactory("customerPU");
 	public static void main(String[] args) {
-		addCustomer();
+		//addCustomer();
 		//readCustomer();
+		readCustomer();
 	}
 	
 	static void addCustomer() {
@@ -25,8 +31,8 @@ public class EmpRespository {
 		//c1.setEmail("xyz@gmail.com"); //Detached State ...
 		System.out.println("Success ...");
 	}
-	
-	static void readCustomer() {
+
+	static void readAllCustomer() {
 		EntityManager em=emf.createEntityManager();
 		Customer c=em.find(Customer.class, 999);
 		if(c!=null) {
@@ -36,6 +42,17 @@ public class EmpRespository {
 		else
 			System.out.println("Customer not found ..");
 		em.close();
+	}
+	
+	
+	static void readCustomer() {
+		String jpql="select c from Customer as c";
+		EntityManager em=emf.createEntityManager();
+		Query q=em.createQuery(jpql);
+		List <Customer>cus_list=q.getResultList();
+		System.out.println("Id\t Name\t Email\t");
+		cus_list.forEach(c->System.out.println(c.getCustId()+"\t"+c.getCustName()+"\t"+c.getEmail()));
+		
 	}
 	
 	static void updateCustomer() {
