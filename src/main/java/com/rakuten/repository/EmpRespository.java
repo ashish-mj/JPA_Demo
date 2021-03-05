@@ -15,14 +15,14 @@ public class EmpRespository {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		Customer c1=new Customer(); //new state/ transient state ...
-		c1.setCustId(113);
-		c1.setCustName("abc");
-		c1.setEmail("abc@gmail.com");
+		c1.setCustId(112);
+		c1.setCustName("dbc");
+		c1.setEmail("dbc@gmail.com");
 		em.persist(c1);  //saving in DB ..Managed state ....
-		c1.setEmail("abcd@gmail.com");
+		//c1.setEmail("abcd@gmail.com");
 		em.getTransaction().commit();
 		em.close();
-		c1.setEmail("xyz@gmail.com"); //Detached State ...
+		//c1.setEmail("xyz@gmail.com"); //Detached State ...
 		System.out.println("Success ...");
 	}
 	
