@@ -1,12 +1,16 @@
 package com.rakuten.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity//mandatory
+@Table(name ="Customer_info")//optional
 public class Customer {
-	@Id
+	@Id//mandatory
 private int custId;
+	@Column(name="CUSTOMER_NAME")//optional
 private String custName;
 private String email;
 
@@ -28,7 +32,11 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
+
+
+
 }
+
 
 
 
